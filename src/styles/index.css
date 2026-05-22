@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand Color Palette - Strict Option 3 */
+    --brand-charcoal: #111111; /* Matte Black */
+    --brand-cream: #F4EFEA;    /* Bone White */
+    --brand-olive: #7A8F7C;    /* Deep Sage */
+    --brand-chili: #A65F45;    /* Muted Clay */
+    --brand-leaf: #7A8F7C;     /* Deep Sage / Leaf */
+    --brand-sand: #D8CFC4;     /* Soft Sand */
+    --brand-dark-bg: #111111;  /* Matte Black Dark Base */
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--brand-cream);
+    color: var(--brand-charcoal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Make sure cursor doesn't conflict with custom follow-cursor when hovering clickable elements */
+  a, button, select, input, [role="button"] {
+    cursor: pointer;
+  }
+}
+
+/* Custom styles for layout overrides */
+.outline-logo {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
