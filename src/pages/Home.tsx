@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Header from "../components/Header";
-import Hero from "../components/Hero";
+import Header from "../components/header";
+import Hero from "../components/hero";
 import WhatWeDo from "../components/whatwedo";
 import CoreValues from "../components/corevalues";
 import CTA from "../components/cta";
