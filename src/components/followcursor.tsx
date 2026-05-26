@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 interface FollowCursorProps {
   color?: string;
@@ -59,13 +59,13 @@ const FollowCursor: React.FC<FollowCursorProps> = ({
     const updateDot = () => {
       if (context) {
         context.clearRect(0, 0, width, height);
-        
+
         // Hide global follow cursor when hovering over the video container
         const el = document.elementFromPoint(cursor.x, cursor.y);
         if (el && (el.closest('.video-container-cursor-none') || el.classList.contains('video-container-cursor-none'))) {
           return;
         }
-        
+
         dot.moveTowards(cursor.x, cursor.y, context);
       }
     };

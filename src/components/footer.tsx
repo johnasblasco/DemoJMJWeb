@@ -1,4 +1,4 @@
-import React from 'react';
+
 import jmjLogo from '../assets/JMJlogo.png';
 
 const Footer: React.FC = () => {

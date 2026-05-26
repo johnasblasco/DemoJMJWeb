@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import jmjLogo from '../assets/JMJlogo.png';
 
@@ -16,21 +16,21 @@ const Preloader: React.FC<PreloaderProps> = ({ progress }) => {
     >
       <div className="relative w-24 md:w-32 h-auto flex flex-col items-center">
         {/* Base Grey Logo */}
-        <img 
-          src={jmjLogo} 
-          alt="Loading Background" 
-          className="w-full h-auto object-contain opacity-20 grayscale" 
+        <img
+          src={jmjLogo}
+          alt="Loading Background"
+          className="w-full h-auto object-contain opacity-20 grayscale"
         />
-        
+
         {/* White Overlay Logo using clip-path */}
-        <img 
-          src={jmjLogo} 
-          alt="Loading Progress" 
-          className="absolute inset-0 w-full h-auto object-contain brightness-0 invert" 
-          style={{ 
+        <img
+          src={jmjLogo}
+          alt="Loading Progress"
+          className="absolute inset-0 w-full h-auto object-contain brightness-0 invert"
+          style={{
             clipPath: `inset(${100 - progress}% 0 0 0)`,
             transition: 'clip-path 0.2s ease-out'
-          }} 
+          }}
         />
       </div>
 

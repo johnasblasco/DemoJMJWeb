@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Hamburger from 'hamburger-react';
 import { motion, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -77,11 +77,11 @@ const Hero: React.FC = () => {
     return scrollY.on("change", (latest: number) => {
       const ctaEl = document.getElementById('cta');
       const footerEl = document.getElementById('footer');
-      
+
       if (ctaEl) {
         // Top icons (Menu, Shop) turn black when TOP of screen overlaps CTA
         setIsTopLight(latest + 60 >= ctaEl.offsetTop);
-        
+
         // Bottom icon (Logo) turns black when BOTTOM of screen overlaps CTA
         setIsBottomLight(latest + window.innerHeight >= ctaEl.offsetTop);
       }
@@ -97,10 +97,10 @@ const Hero: React.FC = () => {
   const forceWhiteLeftElements = isSidebarHovered || isOpen;
   const hamburgerBlack = forceWhiteLeftElements ? false : isTopLight;
   const logoBlack = forceWhiteLeftElements ? false : isBottomLight;
-
+  const isMobile = window.innerWidth < 768;
   return (
     <div id="hero" ref={heroRef} className="w-full h-screen relative overflow-hidden font-sans select-none">
-      
+
       {/* Full-Screen Navigation Overlay */}
       <Navigation isOpen={isOpen} setOpen={setOpen} />
 
@@ -121,19 +121,33 @@ const Hero: React.FC = () => {
         <div className="bg-[#7A8F7C] relative flex flex-col justify-center pl-16 pr-8 pt-20 pb-20 md:pl-24 md:pr-20 md:pt-28 md:pb-28 h-[55vh] md:h-full w-full">
 
           {/* Interactive Sidebar Hover Area */}
-          <div 
-            onMouseEnter={() => setIsSidebarHovered(true)}
-            onMouseLeave={() => setIsSidebarHovered(false)}
-            className={`fixed top-0 left-0 h-screen w-[72px] md:w-[88px] z-40 bg-[#111111] transition-transform duration-500 origin-left ${forceWhiteLeftElements ? 'scale-x-100' : 'scale-x-0'}`}
-          />
-
+          {!isMobile && (
+            <div
+              onMouseEnter={() => setIsSidebarHovered(true)}
+              onMouseLeave={() => setIsSidebarHovered(false)}
+              className={`fixed top-0 left-0 h-screen w-[72px] md:w-[88px] z-40 bg-[#111111] transition-transform duration-500 origin-left ${forceWhiteLeftElements ? 'scale-x-100' : 'scale-x-0'
+                }`}
+            />
+          )}
           {/* Top-Left Hamburger menu */}
-          <div 
+          <div
             className="fixed top-4 left-4 md:top-6 md:left-6 z-50 transition-colors duration-300"
             onMouseEnter={() => setIsSidebarHovered(true)}
             onMouseLeave={() => setIsSidebarHovered(false)}
           >
-            <Hamburger toggled={isOpen} toggle={setOpen} color={hamburgerBlack ? "#111111" : "#F4EFEA"} size={24} />
+
+            <div
+              className="fixed top-4 left-4 md:top-6 md:left-6 z-50 transition-colors duration-300"
+              onMouseEnter={!isMobile ? () => setIsSidebarHovered(true) : undefined}
+              onMouseLeave={!isMobile ? () => setIsSidebarHovered(false) : undefined}
+            >
+              <Hamburger
+                toggled={isOpen}
+                toggle={setOpen}
+                color={hamburgerBlack ? "#111111" : "#F4EFEA"}
+                size={24}
+              />
+            </div>
           </div>
 
           {/* Heading Content Group (Main Heading and Subheading) with matching left border */}
@@ -141,7 +155,7 @@ const Hero: React.FC = () => {
             style={{ y: yText, opacity: opacityText }}
             className="border-l border-[#F4EFEA]/30 pl-3 md:pl-4 flex flex-col items-start justify-center w-full mt-6 md:mt-8"
           >
-            
+
             {/* Top Subheading - now in-flow together with main heading */}
             <div className="text-[#F4EFEA] font-opensans tracking-widest text-sm sm:text-base md:text-lg uppercase leading-tight max-w-sm mb-4 md:mb-6">
               PROCESSED WITH <span className="text-[#A65F45] font-bold">PURPOSE</span> <br /> FROM FARM TO FLAVOR
