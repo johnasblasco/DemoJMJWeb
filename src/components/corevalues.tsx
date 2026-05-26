@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Core values data as provided by the user
+// Core values data
 const coreValuesData = [
   {
     id: "01",
@@ -26,85 +26,182 @@ const coreValuesData = [
   {
     id: "05",
     title: "Resilience",
-    text: "We exercise flexibility and adaptability to address business dynamics to efficiently enable us to fuel company growth, to continuously delight our consumers and to upgrade our employees' skills. Resilience is our weapon to weather the challenges that the company might face in the near future."
+    text: "We exercise flexibility and adaptability to address business dynamics to efficiently enable us to fuel company growth, to continuously delight our consumers and to upgrade our employees' skills."
   }
 ];
 
 const CoreValues: React.FC = () => {
-  // Pagination state (Page 1 = items 0-2, Page 2 = items 3-4)
   const [page, setPage] = useState(1);
+
   const isPage1 = page === 1;
 
-  // Derive visible values
-  const currentValues = isPage1 ? coreValuesData.slice(0, 3) : coreValuesData.slice(3, 5);
+  const currentValues = isPage1
+    ? coreValuesData.slice(0, 3)
+    : coreValuesData.slice(3, 5);
 
   return (
-    <section id="core-values" className="relative w-full bg-[#7A8F7C] text-[#F4EFEA] py-16 md:py-24 px-6 md:px-16 lg:px-24 font-sans overflow-hidden">
+    <section
+      id="core-values"
+      className="relative w-full bg-[#7A8F7C] text-[#F4EFEA] py-16 md:py-24 px-6 md:px-16 lg:px-24 overflow-hidden"
+    >
+      {/* subtle bg accents */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#A65F45]/10 rounded-full blur-3xl" />
 
-      {/* Heading & Pagination Controls Row */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 gap-8">
-        <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-montserrat font-bold tracking-tight">
-          Core Values.
-        </h2>
+      {/* Header */}
+      <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14 md:mb-20">
+        <div>
+          <span className="uppercase tracking-[0.25em] text-xs text-[#F4EFEA]/60 font-semibold">
+            What We Stand For
+          </span>
 
-        {/* Interactive Pagination Controls (Moved to top right) */}
-        <div className="flex justify-start md:justify-end md:pb-4">
-          <button
-            onClick={() => setPage(isPage1 ? 2 : 1)}
-            className="flex items-center gap-4 text-[#F4EFEA] hover:text-[#A65F45] transition-colors group cursor-pointer"
-          >
-            <span className="font-montserrat font-bold uppercase tracking-widest text-xs sm:text-sm">
-              {isPage1 ? "Next Values" : "Previous Values"}
-            </span>
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#F4EFEA]/40 group-hover:border-[#A65F45] flex items-center justify-center transition-all bg-transparent">
-              <span className={`text-xl md:text-2xl font-sans transform transition-transform duration-300 ${isPage1 ? "group-hover:translate-x-1" : "rotate-180 group-hover:-translate-x-1"}`}>
+          <h2 className="mt-3 text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-bold tracking-tight leading-none">
+            CORE VALUES
+          </h2>
+        </div>
+
+           {/* Bottom Right Navigation */}
+      <div className="relative z-10 flex justify-end mt-14">
+        <div className="flex items-center gap-3">
+
+          {/* Previous */}
+          <div className="relative group">
+            <button
+              onClick={() => setPage(1)}
+              disabled={isPage1}
+              aria-label="Previous"
+              className={`w-11 h-11 flex items-center justify-center rounded-full border text-sm transition-all duration-300
+          ${isPage1
+                  ? 'border-white/10 text-white/15 cursor-not-allowed'
+                  : 'border-white/80 text-white hover:bg-white hover:text-black cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.08)]'
+                }`}
+            >
+              <span className="transition-transform duration-300 group-hover:-translate-x-0.5">
+                ←
+              </span>
+            </button>
+
+            {!isPage1 && (
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-20">
+                <div className="relative px-4 py-2 rounded-xl bg-white text-black text-[10px] font-semibold uppercase tracking-[0.16em] whitespace-nowrap shadow-2xl border border-black/10">
+                  Return to first values
+
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rotate-45" />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Dots */}
+          <div className="flex gap-2 items-center">
+            {[1, 2].map((p) => (
+              <button
+                key={p}
+                onClick={() => setPage(p)}
+                aria-label={`Page ${p}`}
+                className={`rounded-full transition-all duration-300 cursor-pointer
+            ${page === p
+                    ? 'w-6 h-1.5 bg-white'
+                    : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/70'
+                  }`}
+              />
+            ))}
+          </div>
+
+          {/* Next */}
+          <div className="relative group">
+            <button
+              onClick={() => setPage(2)}
+              disabled={!isPage1}
+              aria-label="Next"
+              className={`w-11 h-11 flex items-center justify-center rounded-full border text-sm transition-all duration-300
+          ${!isPage1
+                  ? 'border-white/10 text-white/15 cursor-not-allowed'
+                  : 'border-white/80 text-white hover:bg-white hover:text-black cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.08)]'
+                }`}
+            >
+              <span className="transition-transform duration-300 group-hover:translate-x-0.5">
                 →
               </span>
-            </div>
-          </button>
+            </button>
+
+            {isPage1 && (
+              <div className="absolute bottom-full right-0 mb-3 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-20">
+                <div className="relative px-4 py-2 rounded-xl bg-white text-black text-[10px] font-semibold uppercase tracking-[0.16em] whitespace-nowrap shadow-2xl border border-black/10">
+                  View remaining values
+
+                  <div className="absolute -bottom-1 right-5 w-2 h-2 bg-white rotate-45" />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Label */}
+          <span className="hidden sm:inline font-mono text-[10px] tracking-[0.24em] uppercase text-white ml-2">
+            {isPage1
+              ? 'Commitment · Integrity · Quality'
+              : 'Love · Resilience'}
+          </span>
+
         </div>
       </div>
 
-      {/* Grid Layout Container */}
-      <div className="w-full relative min-h-[450px] md:min-h-[300px]">
+
+      </div>
+
+      {/* Cards */}
+      <div className="relative z-10 min-h-[450px] md:min-h-[340px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={page}
-            initial={{ opacity: 0, x: isPage1 ? -30 : 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: isPage1 ? 30 : -30 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            // We use grid-cols-1 on mobile, and grid-cols-3 on larger screens
-            className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 lg:gap-16 w-full"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            className={`grid gap-6 md:gap-8 ${currentValues.length === 2
+              ? 'grid-cols-1 md:grid-cols-2'
+              : 'grid-cols-1 md:grid-cols-3'
+              }`}
           >
             {currentValues.map((value) => (
-              <div key={value.id} className="flex flex-col group cursor-default">
-                {/* Thin Top Border Line (Brightens on Hover) */}
-                <div className="w-full h-px bg-[#F4EFEA]/30 mb-6 transition-colors duration-300 group-hover:bg-[#F4EFEA]"></div>
+              <motion.div
+                key={value.id}
+                transition={{ duration: 0.25 }}
+                className="group relative transition-all duration-300"
+              >
+                {/* top line */}
+                <div className="w-12 h-px  group-hover:w-20  transition-all duration-300" />
 
-                {/* Large Number Indicator */}
-                <div className="text-xl md:text-2xl font-opensans text-[#F4EFEA]/60 mb-6 md:mb-10">
+                {/* number */}
+                <div className="text-lg md:text-xl text-[#F4EFEA]/45 font-light mb-8">
                   {value.id}
                 </div>
 
-                {/* Title with Interactive Arrow */}
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-bold mb-4 flex items-center gap-3">
-                  {value.title}
-                  <span className="font-sans font-normal opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[#A65F45]">
+                {/* title */}
+                <div className="flex items-center gap-3 mb-5">
+                  <h3 className="text-2xl md:text-3xl font-montserrat font-bold leading-tight">
+                    {value.title}
+                  </h3>
+
+                  <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-white text-xl">
                     →
                   </span>
-                </h3>
+                </div>
 
-                {/* Paragraph Content */}
-                <p className="text-sm sm:text-base font-opensans leading-relaxed text-[#F4EFEA]/90">
+                {/* text */}
+                <p className="text-sm sm:text-base leading-relaxed text-[#F4EFEA]/80">
                   {value.text}
                 </p>
-              </div>
+
+                {/* glow */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
       </div>
 
+   
     </section>
   );
 };
