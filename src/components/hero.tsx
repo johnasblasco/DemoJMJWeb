@@ -118,7 +118,7 @@ const Hero: React.FC = () => {
       <div className="flex flex-col-reverse md:grid md:grid-cols-2 h-full w-full">
 
         {/* Left Column: Brand Narrative Layer */}
-        <div className="bg-[#7A8F7C] relative flex flex-col justify-center pl-16 pr-8 pt-20 pb-20 md:pl-24 md:pr-20 md:pt-28 md:pb-28 h-[55vh] md:h-full w-full">
+        <div className="bg-black relative flex flex-col justify-center pl-16 pr-8 pt-20 pb-20 md:pl-24 md:pr-20 md:pt-28 md:pb-28 h-[55vh] md:h-full w-full">
 
           {/* Interactive Sidebar Hover Area */}
           {!isMobile && (
@@ -251,7 +251,7 @@ const Hero: React.FC = () => {
             transition={{ type: 'spring', stiffness: 250, damping: 25 }}
           >
             {/* Custom Deep Sage Circular Play Element with Soft Sand triangle icon */}
-            <div className="w-16 h-16 md:w-20 md:h-20 bg-[#7A8F7C] rounded-full flex items-center justify-center shadow-lg border border-white/20">
+            <div className="w-16 h-16 md:w-20 md:h-20 bg-brand-chili rounded-full flex items-center justify-center shadow-lg border border-white/20">
               <svg className="w-6 h-6 md:w-8 md:h-8 text-[#D8CFC4] fill-current translate-x-[2px]" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg>

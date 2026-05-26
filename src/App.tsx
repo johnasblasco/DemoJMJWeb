@@ -6,7 +6,7 @@ export default function App() {
     <>
 
       <BotpressChat />
-      <FollowCursor color="#323232a6" zIndex={9999} />
+      <FollowCursor color="#A65F45" zIndex={9999} />
       <Home />
     </>
   );

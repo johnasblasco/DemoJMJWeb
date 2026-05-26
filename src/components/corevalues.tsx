@@ -42,7 +42,7 @@ const CoreValues: React.FC = () => {
   return (
     <section
       id="core-values"
-      className="relative w-full bg-[#7A8F7C] text-[#F4EFEA] py-16 md:py-24 px-6 md:px-16 lg:px-24 overflow-hidden"
+      className="relative w-full bg-black text-[#F4EFEA] py-16 md:py-24 px-6 md:px-16 lg:px-24 overflow-hidden"
     >
       {/* subtle bg accents */}
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-3xl" />
@@ -60,91 +60,91 @@ const CoreValues: React.FC = () => {
           </h2>
         </div>
 
-           {/* Bottom Right Navigation */}
-      <div className="relative z-10 flex justify-end mt-14">
-        <div className="flex items-center gap-3">
+        {/* Bottom Right Navigation */}
+        <div className="relative z-10 flex justify-end mt-14">
+          <div className="flex items-center gap-3">
 
-          {/* Previous */}
-          <div className="relative group">
-            <button
-              onClick={() => setPage(1)}
-              disabled={isPage1}
-              aria-label="Previous"
-              className={`w-11 h-11 flex items-center justify-center rounded-full border text-sm transition-all duration-300
-          ${isPage1
-                  ? 'border-white/10 text-white/15 cursor-not-allowed'
-                  : 'border-white/80 text-white hover:bg-white hover:text-black cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.08)]'
-                }`}
-            >
-              <span className="transition-transform duration-300 group-hover:-translate-x-0.5">
-                ←
-              </span>
-            </button>
-
-            {!isPage1 && (
-              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-20">
-                <div className="relative px-4 py-2 rounded-xl bg-white text-black text-[10px] font-semibold uppercase tracking-[0.16em] whitespace-nowrap shadow-2xl border border-black/10">
-                  Return to first values
-
-                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rotate-45" />
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Dots */}
-          <div className="flex gap-2 items-center">
-            {[1, 2].map((p) => (
+            {/* Previous */}
+            <div className="relative group">
               <button
-                key={p}
-                onClick={() => setPage(p)}
-                aria-label={`Page ${p}`}
-                className={`rounded-full transition-all duration-300 cursor-pointer
-            ${page === p
-                    ? 'w-6 h-1.5 bg-white'
-                    : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/70'
+                onClick={() => setPage(1)}
+                disabled={isPage1}
+                aria-label="Previous"
+                className={`w-11 h-11 flex items-center justify-center rounded-full border text-sm transition-all duration-300
+          ${isPage1
+                    ? 'border-white/10 text-white/15 cursor-not-allowed'
+                    : 'border-white/80 text-white hover:bg-white hover:text-black cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.08)]'
                   }`}
-              />
-            ))}
-          </div>
+              >
+                <span className="transition-transform duration-300 group-hover:-translate-x-0.5">
+                  ←
+                </span>
+              </button>
 
-          {/* Next */}
-          <div className="relative group">
-            <button
-              onClick={() => setPage(2)}
-              disabled={!isPage1}
-              aria-label="Next"
-              className={`w-11 h-11 flex items-center justify-center rounded-full border text-sm transition-all duration-300
-          ${!isPage1
-                  ? 'border-white/10 text-white/15 cursor-not-allowed'
-                  : 'border-white/80 text-white hover:bg-white hover:text-black cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.08)]'
-                }`}
-            >
-              <span className="transition-transform duration-300 group-hover:translate-x-0.5">
-                →
-              </span>
-            </button>
+              {!isPage1 && (
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-20">
+                  <div className="relative px-4 py-2 rounded-xl bg-white text-black text-[10px] font-semibold uppercase tracking-[0.16em] whitespace-nowrap shadow-2xl border border-black/10">
+                    Return to first values
 
-            {isPage1 && (
-              <div className="absolute bottom-full right-0 mb-3 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-20">
-                <div className="relative px-4 py-2 rounded-xl bg-white text-black text-[10px] font-semibold uppercase tracking-[0.16em] whitespace-nowrap shadow-2xl border border-black/10">
-                  View remaining values
-
-                  <div className="absolute -bottom-1 right-5 w-2 h-2 bg-white rotate-45" />
+                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rotate-45" />
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
+
+            {/* Dots */}
+            <div className="flex gap-2 items-center">
+              {[1, 2].map((p) => (
+                <button
+                  key={p}
+                  onClick={() => setPage(p)}
+                  aria-label={`Page ${p}`}
+                  className={`rounded-full transition-all duration-300 cursor-pointer
+            ${page === p
+                      ? 'w-6 h-1.5 bg-white'
+                      : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/70'
+                    }`}
+                />
+              ))}
+            </div>
+
+            {/* Next */}
+            <div className="relative group">
+              <button
+                onClick={() => setPage(2)}
+                disabled={!isPage1}
+                aria-label="Next"
+                className={`w-11 h-11 flex items-center justify-center rounded-full border text-sm transition-all duration-300
+          ${!isPage1
+                    ? 'border-white/10 text-white/15 cursor-not-allowed'
+                    : 'border-white/80 text-white hover:bg-white hover:text-black cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.08)]'
+                  }`}
+              >
+                <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                  →
+                </span>
+              </button>
+
+              {isPage1 && (
+                <div className="absolute bottom-full right-0 mb-3 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-20">
+                  <div className="relative px-4 py-2 rounded-xl bg-white text-black text-[10px] font-semibold uppercase tracking-[0.16em] whitespace-nowrap shadow-2xl border border-black/10">
+                    View remaining values
+
+                    <div className="absolute -bottom-1 right-5 w-2 h-2 bg-white rotate-45" />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Label */}
+            <span className="hidden sm:inline font-mono text-[10px] tracking-[0.24em] uppercase text-white ml-2">
+              {isPage1
+                ? 'Commitment · Integrity · Quality'
+                : 'Love · Resilience'}
+            </span>
+
           </div>
-
-          {/* Label */}
-          <span className="hidden sm:inline font-mono text-[10px] tracking-[0.24em] uppercase text-white ml-2">
-            {isPage1
-              ? 'Commitment · Integrity · Quality'
-              : 'Love · Resilience'}
-          </span>
-
         </div>
-      </div>
 
 
       </div>
@@ -194,14 +194,14 @@ const CoreValues: React.FC = () => {
                 </p>
 
                 {/* glow */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/[0.03] to-transparent opacity-0  transition-opacity duration-300 pointer-events-none" />
               </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
       </div>
 
-   
+
     </section>
   );
 };
